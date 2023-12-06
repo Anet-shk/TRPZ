@@ -1,16 +1,11 @@
 trigger:
 - main
-
 pool:
   vmImage: 'ubuntu-latest'
-
 jobs:
-- job: BuildAndDeploy
-  displayName: 'Build and Deploy Job'
+- job: RunDockerContainer
+  displayName: 'Run Nginx Container'
   steps:
-  - script: echo 'Build and Deploy Step'
-    displayName: 'Run a one-line script'
-  - script: |
-      docker pull nginxdemos/hello
-      docker run -p 8080:80 nginxdemos/hello
-    displayName: 'Run Docker container'
+  - script: docker run -p 80:80 -d nginxdemos/hello
+    displayName: 'Run Docker Container'
+
